@@ -16,7 +16,7 @@ class Admincontrollers extends Controller
         $data = [];
         require_once APPPATH. 'libraries/vendor/autoload.php';
         $client = new Google_Client();
-$client->setClientId('160811839710-v3c1enlg9t1h5e1annfhea4i0kjcb96u.apps.googleusercontent.com');
+        $client->setClientId('160811839710-v3c1enlg9t1h5e1annfhea4i0kjcb96u.apps.googleusercontent.com');
         $client->setClientSecret('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');
         $client->setRedirectUri(base_url('/Admincontrollers/login/'));
         $client->addScope('email');
@@ -34,19 +34,17 @@ $client->setClientId('160811839710-v3c1enlg9t1h5e1annfhea4i0kjcb96u.apps.googleu
                 $model = new Adminmodels();
                 if($model->google_user_exist($gdata['id']))
                 {
-                    $userdata = [
-                        'first_name'=>$gdata['given_name'],
-                        'last_name'=>$gdata['family_name'],
-                        'email'=>$gdata['email'],
-                        'profile_pic'=>$gdata['picture'],
-                    ];
-                    if($model->updateGoogleUser($userdata,$gdata['id']))
-                    {
-                        echo "Updated";
-                    }
-                    else{
-                        echo "wrong";
-                    }
+                    // $userdata = [
+                    //     'first_name'=>$gdata['given_name'],
+                    //     'last_name'=>$gdata['family_name'],
+                    //     'email'=>$gdata['email'],
+                    //     'profile_pic'=>$gdata['picture'],
+                    // ];
+                    // if($model->updateGoogleUser($userdata,$gdata['id']))
+                    // {
+                    //     echo "Updated";
+                    // }
+                    return redirect()->to(base_url('/Dashcon/'));
                 }
                 else
                 {
@@ -58,11 +56,7 @@ $client->setClientId('160811839710-v3c1enlg9t1h5e1annfhea4i0kjcb96u.apps.googleu
                         'profile_pic'=>$gdata['picture'],
                     ];
                    if( $model->createUser($userdata)){
-                       echo "Successfully inserted";
-                   }
-                   else
-                   {
-                       echo 'insert wrong';
+                        return redirect()->to(base_url('/Dashcon/'));
                    }
 
                 }
