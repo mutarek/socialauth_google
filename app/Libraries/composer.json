@@ -1,0 +1,18 @@
+{
+    "name": "google/login",
+    "description": "google",
+    "autoload": {
+        "psr-4": {
+            "Google\\Login\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "M Tarek",
+            "email": "mohiuddintarek2017@gmail.com"
+        }
+    ],
+    "require": {
+        "google/apiclient": "2.7"
+    }
+}
